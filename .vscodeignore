@@ -1,0 +1,14 @@
+.vscode/**
+.github/**
+node_modules/**
+src/**
+*.vsix
+.gitignore
+pnpm-lock.yaml
+pnpm-workspace.yaml
+tsconfig.json
+tsconfig.eslint.json
+eslint.config.ts
+tsdown.config.mjs
+renovate.json
+.commitlintrc.json

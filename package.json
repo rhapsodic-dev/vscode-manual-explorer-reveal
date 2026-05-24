@@ -1,0 +1,113 @@
+{
+  "name": "manual-explorer-reveal",
+  "displayName": "Manual Explorer Reveal",
+  "description": "Disables automatic Explorer reveal and adds a manual target button for the active file.",
+  "version": "0.0.7",
+  "publisher": "rhapsodic-dev",
+  "author": {
+    "name": "rhapsodic.dev",
+    "email": "rhapsodic.dev@gmail.com",
+    "url": "https://github.com/rhapsodic-dev"
+  },
+  "contributors": [
+    {
+      "name": "Svyatoslav Fyodorov",
+      "email": "intelrug@gmail.com",
+      "url": "https://github.com/intelrug"
+    },
+    {
+      "name": "TrenLok",
+      "email": "trenlok.dev@gmail.com",
+      "url": "https://github.com/trenlok"
+    }
+  ],
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "explorer",
+    "reveal",
+    "autoReveal"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:manualExplorerReveal.revealActiveFile"
+  ],
+  "icon": "res/icon.png",
+  "main": "./dist/index.mjs",
+  "contributes": {
+    "commands": [
+      {
+        "command": "manualExplorerReveal.revealActiveFile",
+        "title": "Reveal Active File in Explorer",
+        "category": "Explorer",
+        "icon": "$(target)"
+      }
+    ],
+    "configuration": {
+      "title": "Manual Explorer Reveal",
+      "properties": {
+        "manualExplorerReveal.disableAutoReveal": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically set explorer.autoReveal to false when the extension activates."
+        }
+      }
+    },
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "manualExplorerReveal.revealActiveFile"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "manualExplorerReveal.revealActiveFile",
+          "group": "navigation@100",
+          "when": "resourceScheme == file"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "manualExplorerReveal.revealActiveFile",
+          "group": "navigation@100",
+          "when": "view == workbench.explorer.fileView"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc -p . --noEmit",
+    "check": "pnpm run typecheck && pnpm run build",
+    "package": "vsce package --allow-missing-repository",
+    "release": "bumpp",
+    "lint": "eslint .",
+    "format": "eslint . --fix",
+    "vscode:prepublish": "pnpm run check",
+    "prepare": "pnpm run hooks:install",
+    "hooks:install": "pnpm exec simple-git-hooks"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.0.1",
+    "@commitlint/config-conventional": "^21.0.1",
+    "@rhapsodic/eslint-config": "^1.0.4",
+    "@types/node": "^22.10.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.2.2",
+    "bumpp": "^11.1.0",
+    "eslint": "^10.4.0",
+    "simple-git-hooks": "^2.13.1",
+    "tsdown": "^0.22.0",
+    "typescript": "6.0.3"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm run lint",
+    "commit-msg": "pnpm exec commitlint --edit"
+  },
+  "packageManager": "pnpm@11.1.3+sha512.c85357fe17ca12dd23dd7071822666dfd7e3cb76fe214e3370b5ea2fb34f2a231185509b63e717f3cd0acb38dd3f8d82bcd5e8172400ae678b70ea4fbed0896d"
+}
