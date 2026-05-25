@@ -3,7 +3,7 @@
   "displayName": "Manual Explorer Reveal",
   "description": "Disables automatic Explorer reveal and adds a manual target button for the active file.",
   "version": "0.0.7",
-  "publisher": "rhapsodic-dev",
+  "publisher": "rhapsodic",
   "author": {
     "name": "rhapsodic.dev",
     "email": "rhapsodic.dev@gmail.com",

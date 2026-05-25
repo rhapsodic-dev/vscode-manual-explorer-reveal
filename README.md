@@ -1,6 +1,6 @@
 # Manual Explorer Reveal
 
-[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/rhapsodic-dev.manual-explorer-reveal?label=VS%20Code%20Marketplace&color=007ACC)](https://marketplace.visualstudio.com/items?itemName=rhapsodic-dev.manual-explorer-reveal)
+[![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/rhapsodic.manual-explorer-reveal?label=VS%20Code%20Marketplace&color=007ACC)](https://marketplace.visualstudio.com/items?itemName=rhapsodic.manual-explorer-reveal)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
 Reveal the current file in VS Code Explorer only when you ask for it.
