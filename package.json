@@ -46,22 +46,23 @@
         "title": "Reveal Active File in Explorer",
         "category": "Explorer",
         "icon": "$(target)"
+      },
+      {
+        "command": "manualExplorerReveal.restoreAutoReveal",
+        "title": "Restore Explorer Auto Reveal",
+        "category": "Explorer"
       }
     ],
-    "configuration": {
-      "title": "Manual Explorer Reveal",
-      "properties": {
-        "manualExplorerReveal.disableAutoReveal": {
-          "type": "boolean",
-          "default": true,
-          "description": "Automatically set explorer.autoReveal to false when the extension activates."
-        }
-      }
+    "configurationDefaults": {
+      "explorer.autoReveal": false
     },
     "menus": {
       "commandPalette": [
         {
           "command": "manualExplorerReveal.revealActiveFile"
+        },
+        {
+          "command": "manualExplorerReveal.restoreAutoReveal"
         }
       ],
       "editor/title": [

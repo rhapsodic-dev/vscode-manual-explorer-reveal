@@ -11,36 +11,19 @@ import {
   workspace,
 } from 'vscode';
 
-const AUTO_REVEAL_SECTION = 'explorer';
-const AUTO_REVEAL_KEY = 'autoReveal';
-const DISABLE_AUTO_REVEAL_KEY = 'manualExplorerReveal.disableAutoReveal';
-
 export async function activate(context: ExtensionContext): Promise<void> {
-  context.subscriptions.push(commands.registerCommand('manualExplorerReveal.revealActiveFile', revealActiveFile));
-
-  await disableExplorerAutoRevealIfRequested();
-
-  context.subscriptions.push(workspace.onDidChangeConfiguration(async (event) => {
-    if (event.affectsConfiguration(DISABLE_AUTO_REVEAL_KEY)) {
-      await disableExplorerAutoRevealIfRequested();
-    }
-  }));
+  context.subscriptions.push(
+    commands.registerCommand('manualExplorerReveal.revealActiveFile', revealActiveFile),
+    commands.registerCommand('manualExplorerReveal.restoreAutoReveal', restoreExplorerAutoReveal),
+  );
 }
 
-async function disableExplorerAutoRevealIfRequested(): Promise<void> {
-  const shouldDisable = workspace
-    .getConfiguration()
-    .get(DISABLE_AUTO_REVEAL_KEY, true);
+async function restoreExplorerAutoReveal(): Promise<void> {
+  await workspace
+    .getConfiguration('explorer')
+    .update('autoReveal', undefined, ConfigurationTarget.Global);
 
-  if (!shouldDisable) {
-    return;
-  }
-
-  const explorerConfig = workspace.getConfiguration(AUTO_REVEAL_SECTION);
-
-  if (explorerConfig.get(AUTO_REVEAL_KEY) !== false) {
-    await explorerConfig.update(AUTO_REVEAL_KEY, false, ConfigurationTarget.Global);
-  }
+  window.showInformationMessage('Explorer auto reveal restored to the VS Code default.');
 }
 
 async function revealActiveFile(): Promise<void> {
