@@ -45,6 +45,7 @@ jobs:
           files: '*.vsix'
 
       - name: Publish to Visual Studio Marketplace
+        if: false
         run: pnpm exec vsce publish --packagePath *.vsix
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
