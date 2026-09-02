@@ -100,7 +100,7 @@
     "@types/node": "^22.10.0",
     "@types/vscode": "^1.85.0",
     "@vscode/vsce": "^3.2.2",
-    "bumpp": "^11.1.0",
+    "bumpp": "^12.2.1",
     "eslint": "^10.4.0",
     "simple-git-hooks": "^2.13.1",
     "tsdown": "^0.22.0",
